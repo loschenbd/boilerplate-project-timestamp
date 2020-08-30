@@ -42,10 +42,10 @@ app.get('/api/timestamp/:input', (req, res) => {
     resObj['unix'] = new Date(input).getTime();
     resObj['utc'] = new Date(input).toUTCString();
   } else {
-    // Declare Timestamp
+    // Declare Time
     input = parseInt(input);
     resObj['unix'] = new Date(input).getTime();
-    resObj['utc'] = new Data(input).toUTCString();
+    resObj['utc'] = new Date(input).toUTCString();
   }
 
   if (!resObj['unix'] || !resObj['utc']){
