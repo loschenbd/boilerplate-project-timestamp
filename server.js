@@ -51,5 +51,10 @@ app.get('/api/timestamp/:input', (req, res) => {
   if (!resObj['unix'] || !resObj['utc']){
     res.json({error: 'Invalid Date'});
   }
+
+  if (resObj = null || undefined) {
+    resObj['unix'] = new Date().getTime();
+    resObj['utc'] = new Date().toUTCString();
+  }
   res.json(resObj)
 });
