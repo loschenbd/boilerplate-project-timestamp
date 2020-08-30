@@ -35,11 +35,12 @@ let listener = app.listen(process.env.PORT, function () {
 let resObj = {};
 // Create url for collecting the input.
 app.get('/api/timestamp/:input', (req, res) => {
-  // Set variable for
+  // Set variable url input variable
   let input = req.params.input;
-
+  // determine if time is in ISO form.
   if(input.includes('-')){
     resObj['unix'] = new Date(input).getTime();
+    resObj['utc'] = new Date(input).toUTCString();
   }
   res.json(resObj)
 });
