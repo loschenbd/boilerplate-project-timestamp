@@ -27,13 +27,16 @@ app.get("/api/hello", function (req, res) {
 
 
 // listen for requests :)
-var listener = app.listen(process.env.PORT, function () {
+let listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening @ http://localhost:' + listener.address().port);
 });
 
-var resObj = {};
+//Set empty array for inputs.
+let resObj = {};
+// Create url for collecting the input.
 app.get('/api/timestamp/:input', (req, res) => {
-  var input = req.params.input;
+  // Set variable for
+  let input = req.params.input;
 
   if(input.includes('-')){
     resObj['unix'] = new Date(input).getTime();
