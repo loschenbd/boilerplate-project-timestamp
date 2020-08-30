@@ -35,27 +35,32 @@ let listener = app.listen(process.env.PORT, function () {
 let resObj = {};
 // Create url for collecting the input.
 app.get('/api/timestamp/:input', (req, res) => {
-  // Set variable url input variable
+  // Set url input variable
   let input = req.params.input;
 
   if(input.includes('-')){
     resObj['unix'] = new Date(input).getTime();
     resObj['utc'] = new Date(input).toUTCString();
   } else {
-    // Declare Time
+    // Declare Time as a number instead of string
     input = parseInt(input);
+    // generate the correct UNIX and UTC data in json form.
     resObj['unix'] = new Date(input).getTime();
     resObj['utc'] = new Date(input).toUTCString();
   }
-
+  //  error handler for incorrect input
   if (!resObj['unix'] || !resObj['utc']){
     res.json({error: 'Invalid Date'});
   }
+  // return object
   res.json(resObj)
 });
 
+// Get current time at [project_url]/api/timestamp/
 app.get('/api/timestamp', (req, res) => {
+  // generate the correct UNIX and UTC data in json form.
   resObj['unix'] = new Date().getTime();
   resObj['utc'] = new Date().toUTCString();
+  // return object
   res.json(resObj)
 });
