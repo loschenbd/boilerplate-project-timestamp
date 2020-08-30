@@ -1,6 +1,6 @@
 // server.js
 // where your node app starts
-
+'use strict'
 // init project
 var express = require('express');
 var app = express();
@@ -31,9 +31,9 @@ var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening @ http://localhost:' + listener.address().port);
 });
 
-let resObj = {};
+var resObj = {};
 app.get('/api/timestamp/:input', (req, res) => {
-  let input = req.params.input;
+  var input = req.params.input;
 
   if(input.includes('-')){
     resObj['unix'] = new Date(input).getTime();
