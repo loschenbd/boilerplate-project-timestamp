@@ -37,10 +37,19 @@ let resObj = {};
 app.get('/api/timestamp/:input', (req, res) => {
   // Set variable url input variable
   let input = req.params.input;
-  // determine if time is in ISO form.
+
   if(input.includes('-')){
     resObj['unix'] = new Date(input).getTime();
     resObj['utc'] = new Date(input).toUTCString();
+  } else {
+    // Declare Timestamp
+    input = parseInt(input);
+    resObj['unix'] = new Date(input).getTime();
+    resObj['utc'] = new Data(input).toUTCString();
+  }
+
+  if (!resObj['unix'] || resObj['utc']){
+    res.json({error: 'Invalid Date'});
   }
   res.json(resObj)
 });
